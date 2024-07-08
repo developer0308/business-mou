@@ -71,7 +71,7 @@ class HomeViewModel extends BaseViewModel {
         } else {
           _navigationMessage(firebaseMessage.toJson());
         }
-      } else if (firebaseMessage.title.isNotEmpty && Platform.isAndroid) {
+      } else if (firebaseMessage.title.isNotEmpty && (Platform.isIOS || Platform.isAndroid)) {
         PushNotificationLocalHelper.getInstance().showNotification(
           firebaseMessage.title,
           firebaseMessage.body,

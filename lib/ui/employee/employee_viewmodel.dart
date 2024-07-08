@@ -52,7 +52,7 @@ class EmployeeViewModel extends BaseViewModel {
   void addEmployee() async {
     final int currentUsers = await employeeDao.getLocalEmployees().then((value) => value.length);
     final bool purchased = await paymentsManager.checkPurchased(context, currentUsers);
-    if (purchased) {
+    if (!purchased) {
       Navigator.pushNamed(context, Routers.ADD_EMPLOYEE).then((_) => onRefresh());
     }
   }
