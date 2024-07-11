@@ -35,7 +35,7 @@ class FirebaseService {
         print("verId $verId");
         print("Code send");
       },
-      timeout: const Duration(seconds: 30),
+      timeout: const Duration(seconds: 100),
       verificationCompleted: verificationCompleted,
       verificationFailed: verificationFailed,
     );

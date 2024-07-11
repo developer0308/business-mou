@@ -123,10 +123,10 @@ class LoginViewModel extends BaseViewModel {
   Future<void> checkLogged({bool fromSplash = false}) async {
     final String accessToken = await AppShared.getAccessToken() ?? '';
     bool hasInternet = await WifiService.isConnectivity();
-    if (!accessToken.isNotEmpty) {
+    if (accessToken.isNotEmpty) {
       if (hasInternet) {
         final resource = await authRepository.getMeInfo();
-        if (!resource.isSuccess) {
+        if (resource.isSuccess) {
           Navigator.pushNamedAndRemoveUntil(context, Routers.HOME, (route) => false,
               arguments: true);
         } else if (fromSplash) {

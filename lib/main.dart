@@ -44,7 +44,17 @@ Future main() async {
   await allTranslations.init(languageCode);
 
   // Initialize Firebase
+  // final firebaseConfig = FirebaseOptions(
+  //     apiKey: "AIzaSyBM7djkev86Bkf0uDcqmaP7NQQ4u18Bta0",
+  //     authDomain: "mou-business-f3417.firebaseapp.com",
+  //     projectId: "mou-business-f3417",
+  //     storageBucket: "mou-business-f3417.appspot.com",
+  //     messagingSenderId: "837903231618",
+  //     appId: "1:837903231618:web:a0807ebe414a3e5d0c229b",
+  //     measurementId: "G-SVS2NVM3YP");
+      
   await Firebase.initializeApp();
+
   FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
   // Initialized for Firebase Cloud Messaging
@@ -83,9 +93,12 @@ class _MyAppState extends State<MyApp> {
   }
 
   _loadCountryCodes() async {
-    String jsonString = await rootBundle.loadString(AppConstants.countryCodesPath);
-    List<Map<String, dynamic>> jsonData = json.decode(jsonString).cast<Map<String, dynamic>>();
-    AppUtils.appCountryCodes = jsonData.map((e) => CountryPhoneCode.fromJson(e)).toList();
+    String jsonString =
+        await rootBundle.loadString(AppConstants.countryCodesPath);
+    List<Map<String, dynamic>> jsonData =
+        json.decode(jsonString).cast<Map<String, dynamic>>();
+    AppUtils.appCountryCodes =
+        jsonData.map((e) => CountryPhoneCode.fromJson(e)).toList();
   }
 
   _onLocaleChanged() async {
@@ -124,11 +137,14 @@ class _MyAppState extends State<MyApp> {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: Text(allTranslations.text(AppLanguages.sessionExpired).toUpperCase()),
-          content: Text(allTranslations.text(AppLanguages.sessionExpiredDescriptions)),
+          title: Text(
+              allTranslations.text(AppLanguages.sessionExpired).toUpperCase()),
+          content: Text(
+              allTranslations.text(AppLanguages.sessionExpiredDescriptions)),
           actions: <Widget>[
             CupertinoDialogAction(
-              child: Text(allTranslations.text(AppLanguages.login).toUpperCase()),
+              child:
+                  Text(allTranslations.text(AppLanguages.login).toUpperCase()),
               onPressed: () => AppGlobals.logout(context),
             ),
           ],
